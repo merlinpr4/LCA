@@ -21,10 +21,10 @@ public class LCA {
 	int findLCA(int a, int b) {
 		path1.clear();
 		path2.clear();
-		return findpaths(root, a, b);
+		return findLowestCommonAncestor(root, a, b);
 	}
 
-	private int findpaths(Node root, int a, int b) {
+	private int findLowestCommonAncestor(Node root, int a, int b) {
 		int i;
 		if (!findPath(root, a, path1) || !findPath(root, b, path2)) {
 
