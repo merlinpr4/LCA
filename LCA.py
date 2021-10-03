@@ -20,8 +20,6 @@ def findLCA(root, a, b):
     return path1[i - 1]
 
 def findPath(root, val, path):
-    if root is None:
-        return False
 
     path.append(root.data)
 
@@ -43,5 +41,3 @@ root.right.left = Node(5)
 root.left.right = Node(6)
 root.left.left = Node(7)
 
-print("LCA of 4 and 5 is  2 = %d" % (findLCA(root, 4, 5, )))
-print ("LCA of 7 and 5 is 1 %d" %(findLCA(root, 6, 7)))
