@@ -1,13 +1,20 @@
 # LCA
 Lowest Common Ancestor in Java and Python done in two different IDE (Eclipse and PyCharm).
+Java implementation works for BST (Binary Search Tree) and DAG (Directed Acyclic Graph ).
 
 - *Familiar language :* Java
 - *New language :* Python 
 
-Implementation involves creating two arrays which traverse the tree and than comparison of both arrays to find last common element before it changes to find LCA.
+Unit testing done with Junit testing for Java implementation. (JUnit 4 test ). (100% code coverage achieved).
+Unit testing done with unittest for Python implementation. (100 % code coverage achieved).
 
-Unit testing done with Junit testing for Java implementation. (JUnit 4 test ).
-Unit testing done with unittest for Python implementation.
+Note:
+https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/ was used to help write LCA bst code implementations however all test code was written by me.
+The current LCA.java and LCATest files contain code that works for both bst and dag cases .
+I have decided to leave my original binary search tree LCA implementation with its associated tests in java files as it works perfectly for this case.
+The DAG implementation written in the DAG branch which builts on the node class in the original implementation can also be used to construct a bst and I have written tests to demonstrate this.
+I have then writen extensive tests for DAG LCA to verify it works and get 100 % code coverage in eclipse .
+
 
 ## How to Run:
 
@@ -25,20 +32,8 @@ Unit testing done with unittest for Python implementation.
 1. Implement my LCA unittest and run to see tests work
 1. Click run python tests in test_LCA.py with Coverage to see 100 % code coverage. 
 
-Note:
-https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/ was used to help write LCA code implementations.
 
 
-### Commit History:
 
-- LCA Java implementation commited
-- LCA C++ implementation commited
-- LCA Java and C++ mains removed
-- LCA Java Junit tests submitted
-- LCA C++ implementation removed
-- LCA Python implementation commited
-- LCA Python unittest commited
-- LCA DAG branch created 
-- LCA DAG tests tried and failed
-- 
-- 
+
+
