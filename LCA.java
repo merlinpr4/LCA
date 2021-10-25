@@ -1,14 +1,14 @@
 
 import java.util.ArrayList;
 import java.util.List;
-
 class Node {
 	int data;
 	Node left, right;
-
+	ArrayList<Node> ancestors;
 	Node(int value) {
 		data = value;
 		left = right = null;
+		ancestors = null ;
 	}
 }
 
@@ -69,4 +69,44 @@ public class LCA {
 		path.remove(path.size()-1);
 		return false;
 	}
+
+	public void addNodeToDAG(Node val)
+	{
+		val.ancestors = new ArrayList <Node>();
+		val.ancestors.add(val); 
+	}
+
+	public void connectNodeToAncestors(Node a, Node b) 
+	{
+		for (int i = 0; i < a.ancestors.size(); i++) 
+		{
+			if(!b.ancestors.contains(a.ancestors.get(i))) 
+			{
+				b.ancestors.add(a.ancestors.get(i)); 
+			}
+		}
+
+	}
+
+	public int findLCADAG(Node a, Node b) 
+	{
+		if(a != null && b != null)
+		{
+			if(a.ancestors != null && b.ancestors != null)
+			{
+				for(int i = 0 ; i < a.ancestors.size() ; i ++)
+				{
+					for (int j = 0 ; j < b.ancestors.size () ; j++)
+					{
+						if(a.ancestors.get(i) == b.ancestors.get(j))
+						{
+							return a.ancestors.get(i).data;
+						}
+					}
+				}
+			}
+		}
+		return 0;
+	}
 }
+
