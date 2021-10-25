@@ -176,9 +176,176 @@ public class LCATest {
 		 *	/
 		 *(7)		         
 		 * */
+	}
 
+	@Test
+	public void testEmptyDAG() {
+		LCA DAG = new LCA();
+		assertEquals("LCA of an empty DAG is -1 (non-existent) ",-1, DAG.findLCADAG(null, null));
+	}
 
+	@Test
+	public void testDAGNull() {
+		LCA DAG = new LCA();
+		Node one = new Node(1);
+		Node two = new Node(2);
+
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.connectNodeToAncestors(two, one);
+
+		assertEquals("LCA of null and null node is -1 (non existant)",-1, DAG.findLCADAG(null, null));
+		assertEquals("LCA of 1 and null node is -1 (non existant)",-1, DAG.findLCADAG(one, null));
+		assertEquals("LCA of 1 and null node is -1 (non existant)",-1, DAG.findLCADAG(null, one));
 
 	}
 
+	@Test
+	public void testDAGThreeNode() {
+		LCA DAG = new LCA();
+
+		Node one = new Node(1);
+		Node two = new Node(2);
+		Node three = new Node(3);
+
+
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.addNodeToDAG(three);
+
+		DAG.connectNodeToAncestors(two, one);
+		DAG.connectNodeToAncestors(three, one);
+
+		assertEquals("LCA of 2 and 3 is 1",1, DAG.findLCADAG(two, three));
+	}
+
+	@Test
+	public void testNoAncestor() {
+		LCA DAG = new LCA();
+		Node one = new Node(1);
+		Node two = new Node(2);
+		Node three = new Node(3);
+		Node four = new Node(4);
+		Node five = new Node(5);
+
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.addNodeToDAG(three);
+		DAG.addNodeToDAG(four);
+		DAG.addNodeToDAG(five);
+
+		DAG.connectNodeToAncestors(two, one);
+		DAG.connectNodeToAncestors(five, four);
+		DAG.connectNodeToAncestors(three, four);
+
+		assertEquals("LCA of 2 and 4 is -1(non existant",-1, DAG.findLCADAG(two, four));
+		assertEquals("LCA of 1 and 5 is -1(non existant",-1, DAG.findLCADAG(one, five));
+		assertEquals("LCA of 2 and 3 is -1(non existant",-1, DAG.findLCADAG(two, three));
+	}
+
+	@Test
+	public void testUsingDAGForBST() {
+		LCA DAG = new LCA();
+		Node one = new Node(1);
+		Node two = new Node(2);
+		Node three = new Node(3);
+		Node four = new Node(4);
+		Node five = new Node(5);
+		Node six = new Node(6);
+		Node seven = new Node(7);
+
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.addNodeToDAG(three);
+		DAG.addNodeToDAG(four);
+		DAG.addNodeToDAG(five);
+		DAG.addNodeToDAG(six);
+		DAG.addNodeToDAG(seven);
+		
+		DAG.connectNodeToAncestors(two, one);
+		DAG.connectNodeToAncestors(three, one);
+		DAG.connectNodeToAncestors(four, two);
+		DAG.connectNodeToAncestors(five, two);
+		DAG.connectNodeToAncestors(seven, three);
+		DAG.connectNodeToAncestors(six, three);
+
+
+		assertEquals("LCA of 4 and 5 is 2",2, DAG.findLCADAG(four,five));
+		assertEquals("LCA of 6 and 7 is 3",3, DAG.findLCADAG(six,seven));
+		assertEquals("LCA of 2 and 4 is 2",2, DAG.findLCADAG(two,four));
+		assertEquals("LCA of 7 and 5 is 1",1, DAG.findLCADAG(seven,five));
+		assertEquals("LCA of 5 and 4 is 2",2, DAG.findLCADAG(five,four));
+		
+		/*Diagram for DAG
+		 *					 (1)
+		 *				    /  \
+		 *				   /	\				  
+		 *			   (3)       (2)
+		 *			  /   \		  /  \
+		 * 			(7)  (6)     (5) (4)	   
+		 * 	
+		 * 
+		 * */
+
+	}
+
+	@Test
+	public void testDAG() {
+		LCA DAG = new LCA();
+		Node one = new Node(1);
+		Node two = new Node(2);
+		Node three = new Node(3);
+		Node four = new Node(4);
+		Node five = new Node(5);
+		Node six = new Node(6);
+		Node seven = new Node(7);
+
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.addNodeToDAG(three);
+		DAG.addNodeToDAG(four);
+		DAG.addNodeToDAG(five);
+		DAG.addNodeToDAG(six);
+		DAG.addNodeToDAG(seven);
+
+		DAG.connectNodeToAncestors(three, one);
+		DAG.connectNodeToAncestors(two, one);
+		DAG.connectNodeToAncestors(two, four);
+		DAG.connectNodeToAncestors(five, four);
+		DAG.connectNodeToAncestors(six, five);
+		DAG.connectNodeToAncestors(seven, six);
+
+
+		assertEquals("LCA of 3 and 2 is 1",1, DAG.findLCADAG(three, two));
+		assertEquals("LCA of 5 and 2 is 4",4, DAG.findLCADAG(two, five));
+		assertEquals("LCA of 2 and 6 is 2",4, DAG.findLCADAG(two, six));
+		assertEquals("LCA of 2 and 7 is 2",4, DAG.findLCADAG(seven, two));
+		assertEquals("LCA of 6 and 7 is 6",6, DAG.findLCADAG(seven, six));
+		assertEquals("LCA of 3 and 3 is 3",3, DAG.findLCADAG(three, three));
+
+	}
+
+	@Test
+	public void testDAGManyNodes() {
+		LCA DAG = new LCA();
+		Node one = new Node(1);
+		Node two = new Node(2);
+		Node three = new Node(3);
+		Node four = new Node(4);
+		Node five = new Node(5);
+		Node six = new Node(6);
+		Node seven = new Node(7);
+		Node eight = new Node(8);
+		Node nine = new Node(9);
+
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.addNodeToDAG(three);
+		DAG.addNodeToDAG(four);
+		DAG.addNodeToDAG(five);
+		DAG.addNodeToDAG(six);
+		DAG.addNodeToDAG(seven);
+		DAG.addNodeToDAG(eight);
+		DAG.addNodeToDAG(nine);
+	}
 }
