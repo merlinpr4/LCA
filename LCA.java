@@ -85,7 +85,6 @@ public class LCA {
 				a.ancestors.add(b.ancestors.get(i)); 
 			}
 		}
-
 	}
 
 	public int findLCADAG(Node a, Node b) 
