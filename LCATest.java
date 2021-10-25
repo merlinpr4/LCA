@@ -2,8 +2,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import org.junit.Test;
+
 @RunWith(JUnit4.class)
 public class LCATest {
+
 	@Test
 	public void testLCA() {
 		LCA bt = new LCA();
@@ -33,7 +37,7 @@ public class LCATest {
 		 * */
 
 	}
-	
+
 	@Test
 	public void testNonExistentNode() {
 		LCA bt = new LCA();
@@ -44,7 +48,7 @@ public class LCATest {
 		assertEquals("LCA of 1 and 5 is -1 (not existent)",-1, bt.findLCA(1,5));
 		assertEquals("LCA of 5 and 2 is -1 (not existent)",-1, bt.findLCA(5,2));
 	}
-	
+
 	@Test
 	public void testNonExistentTree() {
 		LCA bt = new LCA();
@@ -53,7 +57,6 @@ public class LCATest {
 
 		assertEquals("LCA of 5 and 1 is -1 (not existent)",-1, bt.findLCA(5,1));
 	}
-
 
 	@Test
 	public void testLCASmallTree() {
@@ -66,7 +69,7 @@ public class LCATest {
 		assertEquals("LCA of 1 and 3 is 1",1, bt.findLCA(1,3));
 		assertEquals("LCA of 2 and 3 is 1",1, bt.findLCA(2,3));
 		assertEquals("LCA of 7 and 5 is 1",-1, bt.findLCA(7,5));
-
+	
 	}
 
 	@Test
@@ -96,6 +99,7 @@ public class LCATest {
 		assertEquals("LCA of 14 and 15 is 6",6, bt.findLCA(14,15));
 		assertEquals("LCA of 7 and 6 is 3",3, bt.findLCA(7,6));
 		assertEquals("LCA of 12 and 13 is 5",5, bt.findLCA(13,12));
+		assertEquals("LCA of 12 and 13 is 5",5, bt.findLCA(12,13));
 
 		/*Diagram Test LCA Big Tree
 		 *					   (1)
@@ -129,7 +133,7 @@ public class LCATest {
 		assertEquals("LCA of 4 and 5 is 5",4, bt.findLCA(4,5));
 		assertEquals("LCA of 2 and 5 is 2",2, bt.findLCA(2,5));
 		assertEquals("LCA of 6 and 7 is 6",6, bt.findLCA(6,7));
-
+		assertEquals("LCA of 7 and 3 is 1",1, bt.findLCA(7,3));
 		/*Diagram Test LCA Right Leaning Tree
 		 *					   (1)
 		 *				      /    \
@@ -165,8 +169,8 @@ public class LCATest {
 		/*Diagram Test LCA Left Leaning Tree
 		 *					   (1)
 		 *				      /    \
-		 *				  /			   \	  
-		 *			   (3)               (2)
+		 *				  /			  \	  
+		 *			   (3)            (2)
 		 *			    /
 		 *			( 4)
 		 *			/
@@ -328,6 +332,7 @@ public class LCATest {
 	@Test
 	public void testDAGManyNodes() {
 		LCA DAG = new LCA();
+		Node zero = new Node (0);
 		Node one = new Node(1);
 		Node two = new Node(2);
 		Node three = new Node(3);
@@ -338,6 +343,7 @@ public class LCATest {
 		Node eight = new Node(8);
 		Node nine = new Node(9);
 
+		DAG.addNodeToDAG(zero);
 		DAG.addNodeToDAG(one);
 		DAG.addNodeToDAG(two);
 		DAG.addNodeToDAG(three);
@@ -347,5 +353,28 @@ public class LCATest {
 		DAG.addNodeToDAG(seven);
 		DAG.addNodeToDAG(eight);
 		DAG.addNodeToDAG(nine);
+
+		DAG.connectNodeToAncestors(two, one);
+		DAG.connectNodeToAncestors(three, one);
+		DAG.connectNodeToAncestors(four, two);
+		DAG.connectNodeToAncestors(five, two);
+		DAG.connectNodeToAncestors(four, three);
+		DAG.connectNodeToAncestors(nine, three);
+		DAG.connectNodeToAncestors(six, four);
+		DAG.connectNodeToAncestors(seven, four);
+		DAG.connectNodeToAncestors(eight, seven);
+
+		assertEquals("LCA of 5 and 7 is 2",2, DAG.findLCADAG(five, seven));
+		assertEquals("LCA of 7 and 5 is 2",2, DAG.findLCADAG(seven, five));
+		assertEquals("LCA of 5 and 4 is 2",2, DAG.findLCADAG(five, four));
+		assertEquals("LCA of 8 and 7 is 7",7, DAG.findLCADAG(eight, seven));
+		assertEquals("LCA of 6 and 7 is 2",4, DAG.findLCADAG(six, seven));
+		assertEquals("LCA of 5 and 2 is 5",2, DAG.findLCADAG(five, two));
+		assertEquals("LCA of 3 and 3 is 3",3, DAG.findLCADAG(three, three));
+		assertEquals("LCA of 1 and 9 is 1",1, DAG.findLCADAG(one, nine));
+		assertEquals("LCA of 9 and 4 is 3",3, DAG.findLCADAG(nine, four));
+		
+
 	}
+
 }

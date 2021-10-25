@@ -1,17 +1,19 @@
+
 import java.util.ArrayList;
 import java.util.List;
-
 class Node {
 	int data;
 	Node left, right;
-
+	ArrayList<Node> ancestors;
 	Node(int value) {
 		data = value;
 		left = right = null;
+		ancestors = null ;
 	}
 }
 
 public class LCA {
+
 	Node root;
 	private List<Integer> path1 = new ArrayList<>();
 	private List<Integer> path2 = new ArrayList<>();
@@ -83,6 +85,7 @@ public class LCA {
 				a.ancestors.add(b.ancestors.get(i)); 
 			}
 		}
+
 	}
 
 	public int findLCADAG(Node a, Node b) 
