@@ -1,5 +1,5 @@
 # LCA
-Lowest Common Ancestor in Java and Python for a binary tree done in three different IDE (Eclipse and PyCharm).
+Lowest Common Ancestor in Java and Python done in two different IDE (Eclipse and PyCharm).
 
 - *Familiar language :* Java
 - *New language :* Python 
@@ -38,3 +38,7 @@ https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/ was used
 - LCA C++ implementation removed
 - LCA Python implementation commited
 - LCA Python unittest commited
+- LCA DAG branch created 
+- LCA DAG tests tried and failed
+- 
+- 
