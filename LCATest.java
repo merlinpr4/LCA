@@ -26,11 +26,11 @@ public class LCATest {
 		assertEquals("LCA of 5 and 4 is 2",2, bt.findLCA(5,4));
 
 		/*Diagram Test LCA
-		 *					 (1)
-		 *				    /  \
-		 *				   /	\				  
+		 *				  (1)
+		 *				 /  \
+		 *			        /    \				  
 		 *			   (3)       (2)
-		 *			  /   \		  /  \
+		 *			  /   \       /  \
 		 * 			(7)  (6)     (5) (4)	   
 		 * 	
 		 * 
@@ -102,11 +102,11 @@ public class LCATest {
 				assertEquals("LCA of 12 and 13 is 5",5, bt.findLCA(13,12));
 
 		/*Diagram Test LCA Big Tree
-		 *					   (1)
-		 *				      /    \
-		 *				  /				\	  
+		 *			             (1)
+		 *				   /     \
+		 *			       /            \	  
 		 *			   (3)               (2)
-		 *			  /   \		        /    \
+		 *			  /   \		    /    \
 		 * 			(7)     (6)      (5)      (4)	   
 		 * 			/\      / \       /\      /\
 		 *      (11) (10) (15)(14)  (13)(12) (9)(8)
@@ -135,18 +135,18 @@ public class LCATest {
 				assertEquals("LCA of 6 and 7 is 6",6, bt.findLCA(6,7));
 
 		/*Diagram Test LCA Right Leaning Tree
-		 *					   (1)
+		 *					(1)
 		 *				      /    \
-		 *				  /			   \	  
-		 *			   (3)               (2)
-		 *			     		            \
-		 * 						            (4)	   
-		 * 						      	      \
-		 *      				  			   (5) 
-		 *                                       \
-		 * 										  (6)
-		 * 										   \
-		 * 										   (7)
+		 *				     /	     \	  
+		 *			           (3)        (2)
+		 *			     		        \
+		 * 						 (4)	   
+		 * 						    \
+		 *      				  	   (5) 
+		 *                                                   \
+		 * 						    (6)
+		 * 						     \
+		 * 						    (7)
 		 * */
 	}
 
@@ -167,18 +167,18 @@ public class LCATest {
 				assertEquals("LCA of 3 and 5 is 3",3, bt.findLCA(3,5));
 
 		/*Diagram Test LCA Left Leaning Tree
-		 *					   (1)
-		 *				      /    \
-		 *				  /			   \	  
-		 *			   (3)               (2)
+		 *				(1)
+		 *				/    \
+		 *			     /	        \	  
+		 *			   (3)            (2)
 		 *			    /
-		 *			( 4)
+		 *			 ( 4)
 		 *			/
-		 *		(5)
+		 *		     (5)
+		 *	             /
+		 *	          (6)
 		 *		/
-		 *	(6)
-		 *	/
-		 *(7)		         
+		 *	     (7)		         
 		 * */
 
 
@@ -210,13 +210,13 @@ public class LCATest {
 		assertEquals("LCA of 1 and 2 is 2",2, DAG.findLCADAG(two, one));
 	
 		//  DAG implementation Diagram
-		//                                         			 1
-		//                                          	  /     \
-	    //                                               v		 v
-		//                         					     3  -->   2  
-		//														  ^
-		//                                                         \
-		//          											    4
+		//    1
+		// /	\
+	        // v	  v
+		// 3  --> 2  
+		//	   ^
+		//          \
+		//           4
 	}
 
 	@Test
@@ -244,10 +244,10 @@ public class LCATest {
 		assertEquals("LCA of 2 and 4 is 2",2, DAG.findLCADAG(two, four));
 
 		/*  DAG  Diagram       						                  
-		 *                          1                              
-		 * 	         	           /  \
-		 * 						 v	   v                            
-		 *                       3 <--  2 <-- 4                          
+		 *        1                              
+		 *	/  \
+		 *    v	    v                            
+		 *   3 <--  2 <-- 4                          
 		 *                  									  
 		 *                                                          
 		 *                      									
