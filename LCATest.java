@@ -206,4 +206,25 @@ public class LCATest {
 		//     \      \                                                       \
 		//      2     4                                                       4
  	}
+	
+	@Test
+	public void testDAGLeft() {
+		LCA bt = new LCA();
+		bt.root = new Node(1);
+		bt.root.right = new Node(2);
+		bt.root.left = new Node(3);
+		bt.root.right.left = new Node (3); //issue as this just creates new node not edge as wanted
+		bt.root.right.right = new Node (4);
+		
+		assertEquals("LCA of 4 and 3 is 2",2, bt.findLCA(4,3));
+		
+		/*           Currently whats happening                    DAG goal
+		 *                    1                                    1
+		 * 		             / \   LCA(3,4) =1                    /   \     LCA(3,4) = 3
+		 *                  3   2                                3 <-- 2    
+		 *                      / \                                      \ 
+		 *                     3    4                                     4
+		 */            
+		
+	}
 }
