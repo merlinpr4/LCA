@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 class Node {
@@ -13,7 +12,6 @@ class Node {
 }
 
 public class LCA {
-
 	Node root;
 	private List<Integer> path1 = new ArrayList<>();
 	private List<Integer> path2 = new ArrayList<>();
