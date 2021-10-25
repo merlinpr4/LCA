@@ -68,4 +68,39 @@ public class LCA {
 		path.remove(path.size()-1);
 		return false;
 	}
+
+	public void addNodeToDAG(Node val)
+	{
+		val.ancestors = new ArrayList <Node>();		
+		val.ancestors.add(val); 
+	}
+
+	public void connectNodeToAncestors(Node a, Node b) 
+	{
+		for (int i = 0; i < b.ancestors.size(); i++) 
+		{
+			if(!a.ancestors.contains(b.ancestors.get(i))) 
+			{	
+				a.ancestors.add(b.ancestors.get(i)); 
+			}
+		}
+	}
+
+	public int findLCADAG(Node a, Node b) 
+	{
+		if(a != null && b != null)
+			{
+				for(int i = 0 ; i < a.ancestors.size() ; i ++)
+				{
+					for (int j = 0 ; j < b.ancestors.size () ; j++)
+					{
+						if(a.ancestors.get(i) == b.ancestors.get(j))
+						{
+							return a.ancestors.get(i).data;
+						}
+					}
+				}
+			}
+		return -1;
+	}
 }
