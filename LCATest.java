@@ -332,7 +332,6 @@ public class LCATest {
 	@Test
 	public void testDAGManyNodes() {
 		LCA DAG = new LCA();
-		Node zero = new Node (0);
 		Node one = new Node(1);
 		Node two = new Node(2);
 		Node three = new Node(3);
@@ -343,7 +342,6 @@ public class LCATest {
 		Node eight = new Node(8);
 		Node nine = new Node(9);
 
-		DAG.addNodeToDAG(zero);
 		DAG.addNodeToDAG(one);
 		DAG.addNodeToDAG(two);
 		DAG.addNodeToDAG(three);
