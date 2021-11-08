@@ -14,6 +14,7 @@ The current LCA.java and LCATest files contain code that works for both bst and 
 I have decided to leave my original binary search tree LCA implementation with its associated tests in java files as it works perfectly for this case.<br/>
 The DAG implementation written in the DAG branch which builts on the node class in the original implementation can also be used to construct a bst and I have written tests to demonstrate this.<br/>
 I have then writen extensive tests for DAG LCA to verify it works and get 100 % code coverage in eclipse .<br/>
+All commits from 8/11/21 onwards are solely for the purposes of the gamefication excercise
 
 
 When I originally merged the DAG branch into main the changes didnt seem to happen properly as it seemed like main already contained the edits.<br/>
