@@ -373,8 +373,43 @@ public class LCATest {
 		assertEquals("LCA of 3 and 3 is 3",3, DAG.findLCADAG(three, three));
 		assertEquals("LCA of 1 and 9 is 1",1, DAG.findLCADAG(one, nine));
 		assertEquals("LCA of 9 and 4 is 3",3, DAG.findLCADAG(nine, four));
-		
-
 	}
-
+	
+	@Test
+	public void testDAGLeftLeaning() {
+		
+		LCA DAG = new LCA();
+		Node zero = new Node (0);
+		Node one = new Node(1);
+		Node two = new Node(2);
+		Node three = new Node(3);
+		Node four = new Node(4);
+		Node five = new Node(5);
+		Node six = new Node(6);
+		Node seven = new Node(7);
+		
+		DAG.addNodeToDAG(zero);
+		DAG.addNodeToDAG(one);
+		DAG.addNodeToDAG(two);
+		DAG.addNodeToDAG(three);
+		DAG.addNodeToDAG(four);
+		DAG.addNodeToDAG(five);
+		DAG.addNodeToDAG(six);
+		DAG.addNodeToDAG(seven);
+		
+		DAG.connectNodeToAncestors(two, one);
+		DAG.connectNodeToAncestors(three, one);
+		DAG.connectNodeToAncestors(four, three);
+		DAG.connectNodeToAncestors(five, four);
+		DAG.connectNodeToAncestors(six, five);
+		DAG.connectNodeToAncestors(seven, six);
+		
+		
+		assertEquals("LCA of 1 and 2 is 1",1, DAG.findLCADAG(one, two));
+		assertEquals("LCA of 3 and 4 is 3",3, DAG.findLCADAG(three, four));
+		assertEquals("LCA of 2 and 3 is 1",1, DAG.findLCADAG(two,three));
+		assertEquals("LCA of 4 and 5 is 5",4, DAG.findLCADAG(four,five));
+		assertEquals("LCA of 3 and 5 is 3",3, DAG.findLCADAG(three,five));
+		
+	}
 }
